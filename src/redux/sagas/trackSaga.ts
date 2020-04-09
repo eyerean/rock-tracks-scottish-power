@@ -11,8 +11,8 @@ function* fetchTracksSaga(action: Action) {
   try {
     const response: AxiosResponse = yield call(fetchTracks);    
     yield put({type: TRACKS_FETCH_SUCCESS, payload: {tracks: response.data.results}});
-   } catch (e) {
-      yield put({type: TRACKS_FETCH_FAILURE, message: e.message});
+   } catch (error) {
+      yield put({type: TRACKS_FETCH_FAILURE, error});
    }
 }
 

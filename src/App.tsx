@@ -9,13 +9,14 @@ import './App.css';
 
 interface StateProps {
   tracks: Track[];
+  error?: string;
 }
 
 interface ActionProps {
   fetchTracks: () => Action;
 }
 
-const App = ({ fetchTracks, tracks }: StateProps & ActionProps) => {
+const App = ({ fetchTracks, tracks, error }: StateProps & ActionProps) => {
   const [trackDetails, setTrackDetails] = React.useState({} as Track);
   React.useEffect(() => {
     // on mount fetch track info
@@ -37,6 +38,7 @@ const App = ({ fetchTracks, tracks }: StateProps & ActionProps) => {
   return (
     <div>
       <h2>Rock Tracks</h2>
+      {error && <p>{error}</p>}
       {Object.keys(trackDetails).length === 0 && tracks.length > 0 ? 
         <table>
           <thead style={{ backgroundColor: 'lightgrey'}}>
@@ -89,6 +91,7 @@ const App = ({ fetchTracks, tracks }: StateProps & ActionProps) => {
 
 const mapStateToProps = (state: State): StateProps => ({
   tracks: selectors.getTracks(state),
+  error: selectors.getError(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): ActionProps => ({

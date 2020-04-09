@@ -14,7 +14,7 @@ const trackReducer = (state: TrackState = INITIAL_STATE, action: Action) => {
     case TRACKS_FETCH_SUCCESS:
       return { ...state, fetching: false, tracks: action.payload.tracks };
     case TRACKS_FETCH_FAILURE:
-      return { ...state, fetching: false, error: action.payload.message };
+      return { ...state, fetching: false, error: action.payload.error };
     default:
       return state;
   }
