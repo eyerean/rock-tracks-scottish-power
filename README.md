@@ -1,4 +1,4 @@
-## My solution to the test of Scottish Power
+## Rock Tracks
 
 ### Get started
 - run `yarn` or `yarn install` to install all dependencies
