@@ -1,26 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import actions from './redux/actions/actions';
+import selectors from './redux/selectors';
+import { Action, Track, State } from './types';
 import './App.css';
 
-function App() {
+interface StateProps {
+  tracks: Track[];
+}
+
+interface ActionProps {
+  fetchTracks: () => Action;
+}
+
+const App = ({ fetchTracks, tracks }: StateProps & ActionProps) => {
+  React.useEffect(() => {
+    // on mount fetch track info
+    fetchTracks();
+  }, [fetchTracks]);
+
+  console.log('tracks!', tracks);
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
     </div>
   );
 }
 
-export default App;
+
+const mapStateToProps = (state: State): StateProps => ({
+  tracks: selectors.getTracks(state),
+});
+
+const mapDispatchToProps = (dispatch: Dispatch): ActionProps => ({
+  fetchTracks: () => dispatch(actions.fetchTracks()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
