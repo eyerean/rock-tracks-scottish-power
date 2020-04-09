@@ -4,6 +4,7 @@ import { Dispatch } from 'redux';
 import actions from './redux/actions/actions';
 import selectors from './redux/selectors';
 import { Action, Track, State } from './types';
+import { msToReadableTime } from './helpers';
 import './App.css';
 
 interface StateProps {
@@ -69,7 +70,7 @@ const App = ({ fetchTracks, tracks }: StateProps & ActionProps) => {
           <p>{`Track name: ${trackDetails.trackName}`}</p>
           <p>{`Artist: ${trackDetails.artistName}`}</p>
           <p>{`Track Price: ${trackDetails.trackPrice} ${trackDetails.currency}`}</p>
-          <p>{`Duration: ${trackDetails.trackTimeMillis}`}</p>
+          <p>{`Duration: ${msToReadableTime(trackDetails.trackTimeMillis)}`}</p>
           <p>{`Release date: ${trackDetails.releaseDate}`}</p>
 
           <button onClick={handleShowTrackList}>
