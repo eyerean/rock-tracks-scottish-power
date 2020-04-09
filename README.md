@@ -1,44 +1,19 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## My solution to the test of Scottish Power
 
-## Available Scripts
+### Get started
+- run `yarn` or `yarn install` to install all dependencies
+- run `yarn start` to start the app. It runs on localhost:3000.
 
-In the project directory, you can run:
+### Additional info
+I used [axios](https://github.com/axios/axios) for the API requests in combination with [redux-saga](https://github.com/redux-saga/redux-saga). I find `axios` more convenient than the `Fetch API` because the extra step of using `.json()` in the response is not needed, and because of the way the request errors are caught. This is probably not very applicable in this small test app but I overall prefer making requests using axios.
 
-### `yarn start`
+I used `redux-saga` because I like the structured way API calls are made with it. I also like having the ability to use effects and trigger different actions based on others, all belonging in dedicated sagas. It requires some boilerplate code in order to make a simple API request and update the redux store, but I prefer it (especially in big applications) because it promotes code clarity.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+You may also notice that I used the `https://cors-anywhere.herokuapp.com/` as a "suffix" to the request url. Its use it to work as a proxy and avoid the CORS issues that get triggered when accessing APIs that do not accept requests from foreign domains (or block them after a certain limit which was the case with the iTunes API). 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Potentional future improvements
+The styles are definitely a good candidate for improvement.
 
-### `yarn test`
+Additionally, `react-router` could be added for navigation between the two pages of the app, one being the track list page and the other being the track details page. 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Furthermore, this app lacks tests and that should be a future addition.
