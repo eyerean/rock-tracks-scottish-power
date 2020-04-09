@@ -19,7 +19,7 @@ function* fetchTracksSaga(action: Action) {
 function fetchTracks(): AxiosPromise {
   return axios({
     method: "get",
-    url: 'https://itunes.apple.com/search?term=rock&media=music'
+    url: 'https://cors-anywhere.herokuapp.com/https://itunes.apple.com/search?term=rock&media=music'
   });
 }
 

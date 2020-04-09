@@ -15,16 +15,72 @@ interface ActionProps {
 }
 
 const App = ({ fetchTracks, tracks }: StateProps & ActionProps) => {
+  const [trackDetails, setTrackDetails] = React.useState({} as Track);
   React.useEffect(() => {
     // on mount fetch track info
     fetchTracks();
   }, [fetchTracks]);
 
-  console.log('tracks!', tracks);
-  
-  return (
-    <div className="App">
+  const handleShowTrackDetails = (track: Track) => () => {
+    setTrackDetails(track);
+  };
 
+  const handleShowTrackList = () => {
+    setTrackDetails({} as Track);
+  };
+
+  const handleShowMoreDetails = () => {
+    window.open(trackDetails.trackViewUrl, '_blank');
+  }
+
+  return (
+    <div>
+      <h2>Rock Tracks</h2>
+      {Object.keys(trackDetails).length === 0 && tracks.length > 0 ? 
+        <table>
+          <thead style={{ backgroundColor: 'lightgrey'}}>
+            <tr>
+              <th>Track Name</th>
+              <th>Artist</th>
+              <th>Price</th>
+              <th>Artwork URL</th>
+              <th/>
+            </tr>
+          </thead>
+          <tbody>
+            {tracks.map((track: Track) => (
+              <tr key={track.trackId}>
+                <td>{track.trackName}</td>
+                <td>{track.artistName}</td>
+                <td>{track.trackPrice}</td>
+                <td>{track.artworkUrl100}</td>
+                <td>
+                  <button onClick={handleShowTrackDetails(track)}>
+                    show track details
+                  </button>
+                </td>
+              </tr>
+            ))}  
+          </tbody>
+        </table> 
+      : Object.keys(trackDetails).length > 0 &&
+        <div style={{ margin: 80}}>
+          <p>{`Artwork URL: ${trackDetails.artworkUrl100}`}</p>
+          <p>{`Track name: ${trackDetails.trackName}`}</p>
+          <p>{`Artist: ${trackDetails.artistName}`}</p>
+          <p>{`Track Price: ${trackDetails.trackPrice} ${trackDetails.currency}`}</p>
+          <p>{`Duration: ${trackDetails.trackTimeMillis}`}</p>
+          <p>{`Release date: ${trackDetails.releaseDate}`}</p>
+
+          <button onClick={handleShowTrackList}>
+            go back
+          </button>
+
+          <button onClick={handleShowMoreDetails}>
+            more details
+          </button>
+        </div>
+      }
     </div>
   );
 }
