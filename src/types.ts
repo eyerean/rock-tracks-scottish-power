@@ -14,9 +14,9 @@ export interface Track {
     trackName: string;
     collectionCensoredName: string;
     trackCensoredName: string;
-    collectionArtistId: number;
-    collectionArtistName: string;
-    collectionArtistViewUrl: string;
+    collectionArtistId?: number;
+    collectionArtistName?: string;
+    collectionArtistViewUrl?: string;
     artistViewUrl: string;
     collectionViewUrl: string;
     trackViewUrl: string;
@@ -37,7 +37,8 @@ export interface Track {
     country: string;
     currency: string;
     primaryGenreName: string;
-    isStreamable: boolean
+    isStreamable: boolean;
+    contentAdvisoryRating?: string;
 };
 
 export interface TrackState {

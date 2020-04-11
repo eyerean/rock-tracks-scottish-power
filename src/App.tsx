@@ -16,7 +16,7 @@ interface ActionProps {
   fetchTracks: () => Action;
 }
 
-const App = ({ fetchTracks, tracks, error }: StateProps & ActionProps) => {
+export const App = ({ fetchTracks, tracks, error }: StateProps & ActionProps) => {
   const [trackDetails, setTrackDetails] = React.useState({} as Track);
   React.useEffect(() => {
     // on mount fetch track info

@@ -3,6 +3,7 @@
 ### Get started
 - run `yarn` or `yarn install` to install all dependencies
 - run `yarn start` to start the app. It runs on localhost:3000.
+- run `yarn test` to run the tests included in this app.
 
 ### Additional info
 I used [axios](https://github.com/axios/axios) for the API requests in combination with [redux-saga](https://github.com/redux-saga/redux-saga). I find `axios` more convenient than the `Fetch API` because the extra step of using `.json()` in the response is not needed, and because of the way the request errors are caught. This is probably not very applicable in this small test app but I overall prefer making requests using axios.
@@ -15,5 +16,3 @@ You may also notice that I used the `https://cors-anywhere.herokuapp.com/` as a 
 The styles are definitely a good candidate for improvement.
 
 Additionally, `react-router` could be added for navigation between the two pages of the app, one being the track list page and the other being the track details page. 
-
-Furthermore, this app lacks tests and that should be a future addition.
