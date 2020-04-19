@@ -45,6 +45,7 @@ export interface TrackState {
   error?: string
   fetching: boolean,
   tracks: Track[],
+  track?: Track
 };
 
 export interface State {
