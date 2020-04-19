@@ -51,3 +51,8 @@ export interface TrackState {
 export interface State {
   track: TrackState
 };
+
+export interface TracksResponse {
+  resultCount: number;
+  results: Track[];
+}
