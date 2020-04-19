@@ -1,25 +1,17 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
 } from 'react-router-dom';
-import TrackList from './pages/TrackList';
-import TrackDetails from './pages/TrackDetails';
+import Routes from './Routes';
 import './App.css';
 
 const App = () => (
-  <div>
-    <h2>Rock Tracks</h2>
-    <Router>
-      <Switch>
-        <Route exact path="/" component={TrackList} />
-        <Route path="/track/:trackId" component={TrackDetails}/>
-        <Redirect to="/" />
-      </Switch>
-    </Router>
-  </div>
+  <Router>
+    <div>
+      <h2>Rock Tracks</h2>
+      <Routes />
+    </div>
+  </Router>
 );
 
 export default App;
