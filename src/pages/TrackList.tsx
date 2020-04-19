@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { useHistory } from 'react-router-dom';
-import actions from './redux/actions/actions';
-import selectors from './redux/selectors';
-import { Action, Track, State } from './types';
+import actions from '../redux/actions/actions';
+import selectors from '../redux/selectors';
+import { Action, Track, State } from '../types';
 
 export interface StateProps {
   tracks: Track[];

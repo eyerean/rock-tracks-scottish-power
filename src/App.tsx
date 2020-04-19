@@ -5,8 +5,8 @@ import {
   Route,
   Redirect
 } from 'react-router-dom';
-import TrackList from './TrackList';
-import TrackDetails from './TrackDetails';
+import TrackList from './pages/TrackList';
+import TrackDetails from './pages/TrackDetails';
 import './App.css';
 
 const App = () => (

@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import selectors from './redux/selectors';
-import { Track, State } from './types';
-import { getReadableTimeByMs, getReadableDateByISODate } from './helpers';
-import './App.css';
-import actions from './redux/actions/actions';
 import { Dispatch } from 'redux';
+import selectors from '../redux/selectors';
+import actions from '../redux/actions/actions';
+import { Track, State } from '../types';
+import { getReadableTimeByMs, getReadableDateByISODate } from '../helpers';
 import { StateProps, ActionProps } from './TrackList';
 
 interface Props extends StateProps, ActionProps {
