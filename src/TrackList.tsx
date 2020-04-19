@@ -6,23 +6,26 @@ import actions from './redux/actions/actions';
 import selectors from './redux/selectors';
 import { Action, Track, State } from './types';
 
-interface StateProps {
+export interface StateProps {
   tracks: Track[];
   error?: string;
+  fetching: boolean;
 }
 
-interface ActionProps {
+export interface ActionProps {
   fetchTracks: () => Action;
   setTrack: (tr?: Track) => Action;
 }
 
-export const TrackList = ({ fetchTracks, tracks, error, setTrack }: StateProps & ActionProps) => {
+export const TrackList = ({ fetchTracks, tracks, error, setTrack, fetching }: StateProps & ActionProps) => {
   let history = useHistory();
   React.useEffect(() => {
-    // on mount fetch track info
-    fetchTracks();
-    setTrack(undefined);
-  }, [fetchTracks, setTrack]);
+    // on mount fetch track info if tracks are not already fetched
+    if(!tracks || tracks.length === 0){
+      fetchTracks();
+      setTrack(undefined);
+    }
+  }, [fetchTracks, setTrack, tracks]);
 
   const handleShowTrackDetails = (track: Track) => () => {
     setTrack(track);
@@ -30,8 +33,9 @@ export const TrackList = ({ fetchTracks, tracks, error, setTrack }: StateProps &
   };
 
   return (
-    <>
+    <div style={{ margin: 80}}>
       {error && <p>{error}</p>}
+      {fetching && <p>Fetching tracks...</p>}
       {tracks && tracks.length > 0 &&
         <table>
           <thead style={{ backgroundColor: 'lightgrey'}}>
@@ -60,14 +64,15 @@ export const TrackList = ({ fetchTracks, tracks, error, setTrack }: StateProps &
           </tbody>
         </table> 
       }
-    </>
+    </div>
   );
 }
 
 
 const mapStateToProps = (state: State): StateProps => ({
   tracks: selectors.getTracks(state),
-  error: selectors.getError(state)
+  error: selectors.getError(state),
+  fetching: selectors.getFetchingState(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): ActionProps => ({

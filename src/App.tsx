@@ -10,9 +10,9 @@ import TrackDetails from './TrackDetails';
 import './App.css';
 
 const App = () => (
-    <div>
-      <h2>Rock Tracks</h2>
-      <Router>
+  <div>
+    <h2>Rock Tracks</h2>
+    <Router>
       <Switch>
         <Route exact path="/" component={TrackList} />
         <Route path="/track/:trackId" component={TrackDetails}/>

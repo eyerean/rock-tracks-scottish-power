@@ -3,7 +3,6 @@ h2 {
 }
 
 table {
-  margin: 80px;
   text-align: left;
 }
 
@@ -12,5 +11,6 @@ button {
   color: black;
   font-size: 14px;
   cursor: pointer;
-  margin-right: 10px;
+  margin: 0 5px;
+  padding: 7px;
 }
